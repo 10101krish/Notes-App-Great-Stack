@@ -1,4 +1,5 @@
-import { deleteNote } from "./index.js";
+import { generateConfirmationContainer } from "./confirmation.js";
+import { changeNoteContainerValueInDOM, deleteNote } from "./index.js";
 
 function createNoteText(noteTextValue = '') {
     const noteText = document.createElement('textarea');
@@ -69,7 +70,7 @@ export class Note {
         this.noteIndexText = createNoteIndexText(this.noteIndex);
         this.noteDeleteButton = createNoteDeleteButton();
         this.noteDeleteButton.onclick = () => {
-            deleteNote(this.noteIndex);
+            this.displayDeletionConfirmation();
         }
 
         this.noteFooter = createNoteFooter(this.noteIndexText, this.noteDeleteButton);
@@ -80,6 +81,7 @@ export class Note {
         }
 
         this.noteContainer = generateNoteContainer(this.noteText, this.noteFooter);
+        this.noteContainerCopy = null;
     }
 
     getNoteContainer() {
@@ -93,6 +95,24 @@ export class Note {
 
     updateNoteTextValue(updatedTextValue) {
         this.noteTextValue = updatedTextValue;
+    }
+
+    displayDeletionConfirmation() {
+        this.noteContainerCopy = this.noteContainer;
+        this.noteContainer = generateConfirmationContainer(this);
+        changeNoteContainerValueInDOM(this.noteIndex, this.noteContainer);
+    }
+
+    handleDeletionConfirmation(response) {
+        if (response == true) {
+            deleteNote(this.noteIndex);
+        }
+        else {
+            if (this.noteContainerCopy == null)
+                this.noteContainer = generateNoteContainer(this.noteText, this.noteFooter);
+            this.noteContainer = this.noteContainerCopy;
+            changeNoteContainerValueInDOM(this.noteIndex, this.noteContainer);
+        }
     }
 
     delete() {

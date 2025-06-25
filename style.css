@@ -124,6 +124,52 @@ body {
     height: 25px;
 }
 
+.notes-container .confirmation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 500px;
+    height: 175px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(#6441a5, #2a0845);
+}
+
+.notes-container .confirmation-container .confirmation-title {
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+}
+
+.notes-container .confirmation-container .confirmation-buttons-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+}
+
+.notes-container .confirmation-container .confirmation-buttons-container .confirmation-button {
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    width: 75px;
+    font-weight: bold;
+    border: 2px solid #f8f8f8;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #f8f8f8;
+    transition: background 0.5s;
+}
+
+.notes-container .confirmation-container .confirmation-buttons-container .confirmation-button:hover {
+    border: 2px solid #2a0845;
+    background-color: #f8f8f8;
+    color: #2a0845;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: min-content;

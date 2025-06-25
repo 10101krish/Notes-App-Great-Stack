@@ -20,6 +20,11 @@ function removeNoteFromGlobalArray(noteIndex) {
     }
 }
 
+export function changeNoteContainerValueInDOM(noteIndex, newNoteContainerValue) {
+    const currentNoteContainerValue = notesContainer.children[noteIndex];
+    notesContainer.replaceChild(newNoteContainerValue, currentNoteContainerValue);
+}
+
 export function deleteNote(noteIndex) {
     const selectedNote = notesInContainer[noteIndex];
     removeNoteFromGlobalArray(noteIndex);
